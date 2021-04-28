@@ -3,6 +3,6 @@ RUN mkdir /code
 COPY requirements.txt /code
 RUN pip install -r /code/requirements.txt
 COPY . /code
-CMD python /code/manage.py runserver 0:8000
 WORKDIR /code
+CMD 'python manage.py runserver 0:8000
 CMD gunicorn api_yamdb.wsgi:application --bind 0.0.0.0:8000
