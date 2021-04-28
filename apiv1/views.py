@@ -79,7 +79,7 @@ class ReviewViewSet(viewsets.ModelViewSet):
                         title=get_object_or_404(
                             Title,
                             pk=self.kwargs['title_id']
-                            )
+                        )
                         )
 
 
@@ -96,13 +96,13 @@ class CommentViewSet(ReviewViewSet):
                         review=get_object_or_404(
                             Review,
                             pk=self.kwargs['review_id']
-                            )
+                        )
                         )
 
 
 class TitleView(viewsets.ModelViewSet):
     queryset = Title.objects.order_by('-pk').annotate(
-                                                rating=Avg('reviews__score'))
+        rating=Avg('reviews__score'))
     serializer_class = serializers.TitleSerializer
     permission_classes = (IsSafeOrAdminPermission, permissions.AllowAny)
     pagination_class = PageNumberPagination
