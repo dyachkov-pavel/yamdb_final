@@ -59,6 +59,8 @@ jobs:
         passphrase: ${{ secrets.PASSPHRASE }}
         script: |
           sudo docker pull pashvd/yamdb_final:latest
+          sudo docker stop $(sudo docker ps -a -q) 
+          sudo docker run --rm -d -p 8000:8000 pashvd/yamdb_final:latest
   
   send_message:
     runs-on: ubuntu-latest
