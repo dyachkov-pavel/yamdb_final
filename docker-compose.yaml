@@ -24,6 +24,9 @@ services:
     volumes:
       - static:/var/html/static/
       - media:/var/html/media/
+    command: >
+      sh -c "sudo docker stop $(sudo docker ps -a -q) &&
+      sudo docker run --rm -d -p 8000:8000 pashvd/yamdb_final:latest"
 
   nginx:
     image: nginx:1.19.3
